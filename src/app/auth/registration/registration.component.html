@@ -1,0 +1,71 @@
+<p class="text-xs-center">Регистрация для получения доступа</p>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="text"
+                            class="form-control underlined"
+                            id="email"
+                            placeholder="Введите email"
+                            formControlName="email"
+                        >
+                        <div *ngIf="form.get('email').invalid && form.get('email').touched" 
+                        class="alert alert-danger">
+                            <span *ngIf="form.get('email')['errors']['required']">Email can't be an empty.</span>
+                            <span *ngIf="form.get('email')['errors']['email']">Email does not match pattern.</span>
+                            <span *ngIf="form.get('email')['errors']['forbiddenEmail']">This email address already used!</span>
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <label for="password">Пароль</label>
+                        <input
+                            type="password"
+                            class="form-control underlined"
+                            id="password"
+                            placeholder="Введите пароль"
+                            formControlName="password"
+                        >
+                        <div *ngIf="form.get('password').invalid && form.get('password').touched" 
+                        class="alert alert-danger">
+                            <span *ngIf="form.get('password')['errors']['required']">Password can't be an empty.</span>
+                            <span *ngIf="form.get('password')['errors']['minlength']">Password must have at least 6th characters</span>
+                        </div>
+                        <span class="form-help-text">Error message.</span>
+                    </div>
+                    <div class="form-group has-success">
+                        <label for="name">Имя</label>
+                        <input
+                            type="text"
+                            class="form-control underlined"
+                            id="name"
+                            placeholder="Введите имя"
+                            formControlName="name"
+                        >
+                        <div *ngIf="form.get('name').invalid && form.get('name').touched" 
+                        class="alert alert-danger">
+                            <span *ngIf="form.get('name')['errors']['required']">Name can't be an empty.</span>                            
+                        </div>
+                        <span class="form-help-text">Success message.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="agree">                               
+                        <span>Согласен с правилами</span>
+                        <input class="checkbox" id="agree" type="checkbox" formControlName="agree">                                                
+                        </label>
+                        
+                        <div *ngIf="form.get('agree').invalid && form.get('agree').touched" class="alert alert-danger"> 
+                        <span *ngIf="form.get('agree')['errors']['required']">Checkbox can't be an empty.</span>                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">Зарегистрироваться</button>
+                    </div>
+                    <div class="form-group">
+                        <p class="text-muted text-xs-center">
+                            Уже есть аккаунт?
+                            <a [routerLink]="'/auth/login'">
+                                Войти!
+                            </a>
+                        </p>
+                    </div>
+                </form>

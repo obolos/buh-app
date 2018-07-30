@@ -1,0 +1,40 @@
+<div class="card">
+        <div class="card-header bordered">
+            <div class="header-block">
+                <h3 class="title">Редактировать категорию</h3>
+            </div>
+        </div>
+        <div class="card-block">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                <div class="form-group">
+                    <label class="control-label" for="select-category">Выберите категорию</label>
+
+                    <select name="select-category" id="select-category" class="form-control"
+                    [(ngModel)]="currentCategoryId" 
+                    (change)="onCategoryChange()">
+                        <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
+                    </select>                    
+                </div>
+                <div class="form-group">
+                        <label class="control-label" for="category-name">Введите название</label>
+
+                        <input type="text" 
+                        id="category-name" 
+                        class="form-control" 
+                        name="name" 
+                        [ngModel]="currentCategory.name">                    
+                    </div>
+                <div class="form-group">
+                    <label class="control-label" for="category-value">Введите лимит</label>
+
+                    <input type="number" 
+                    id="category-value" 
+                    class="form-control" 
+                    name="capacity" 
+                    min="1"
+                    [ngModel]="currentCategory.capacity">                    
+                </div>
+                <button type="submit" class="btn btn-primary">Редактировать</button>
+            </form>
+        </div>
+    </div>
